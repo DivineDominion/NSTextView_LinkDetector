@@ -4,15 +4,20 @@ import Foundation
 
 public struct LinkMatching {
 
-    public static func detectStandardLinks(text: String, callback: @escaping (NSRange, Link) -> Void) {
-
-        let textRange = NSMakeRange(0, (text as NSString).length)
+    fileprivate static var cachedStandardLinkDetector: NSDataDetector = {
 
         guard let linkDetector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue) else {
             preconditionFailure("NSDataDetector could not be initialized")
         }
 
-        linkDetector.enumerateMatches(
+        return linkDetector
+    }()
+
+    public static func detectStandardLinks(text: String, callback: @escaping (NSRange, Link) -> Void) {
+
+        let textRange = NSMakeRange(0, (text as NSString).length)
+
+        cachedStandardLinkDetector.enumerateMatches(
             in: text,
             options: [],
             range: textRange) { (textCheckingResult: NSTextCheckingResult?, flags: NSRegularExpression.MatchingFlags, stop) in
