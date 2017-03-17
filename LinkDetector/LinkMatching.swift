@@ -1,4 +1,4 @@
-//  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the MIT License.
+//  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the WTFPL License.
 
 import Foundation
 

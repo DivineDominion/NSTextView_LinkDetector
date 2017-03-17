@@ -1,4 +1,6 @@
-import Cocoa
+//  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the WTFPL License.
+
+import Foundation
 
 public struct Link {
     let url: URL

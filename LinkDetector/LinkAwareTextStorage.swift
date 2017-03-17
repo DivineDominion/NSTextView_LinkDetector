@@ -1,3 +1,5 @@
+//  Copyright © 2017 Christian Tietze. All rights reserved. Distributed under the WTFPL License.
+
 import Cocoa
 
 public class LinkAwareTextStorage: NSTextStorage {
