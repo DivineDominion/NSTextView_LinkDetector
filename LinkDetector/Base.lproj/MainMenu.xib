@@ -15,6 +15,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LinkDetector" customModuleProvider="target">
             <connections>
+                <outlet property="scrollView" destination="s1b-HV-D29" id="vLM-d6-zOv"/>
                 <outlet property="textView" destination="iOZ-Ha-RUE" id="Fl0-9t-QFV"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
