@@ -5,7 +5,6 @@ public struct Link {
 }
 
 extension NSRange {
-
     func offset(_ value: Int) -> NSRange {
         return NSRange(location: self.location + value, length: self.length)
     }
@@ -15,18 +14,9 @@ public class LinkAwareString: NSMutableString {
 
     fileprivate var implementation = NSMutableString()
 
-    func paragraphNumber(paragraphIndex: Int) -> Int {
-
-        // TODO: Cache instead of recompute every time
-        var number = 1
-
-        self.enumerateSubstrings(
-            in: NSMakeRange(0, paragraphIndex),
-            options: .byParagraphs) { (substring, substringRange, enclosingRange, stop) in
-                number += 1
-        }
-
-        return number
+    convenience init(string: String) {
+        self.init()
+        self.setString(string)
     }
 
     func enumerateLinks(range: NSRange, callback: @escaping (NSRange, Link) -> Void) {
@@ -37,45 +27,19 @@ public class LinkAwareString: NSMutableString {
 
             guard let paragraph = paragraph else { return }
 
-            let paragraphRange = NSMakeRange(0, (paragraph as NSString).length)
+            func forwardAndOffsetRange(range: NSRange, link: Link) {
 
-            let linkDetector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-            linkDetector.enumerateMatches(
-                in: paragraph,
-                options: [],
-                range: paragraphRange) { (textCheckingResult: NSTextCheckingResult?, flags: NSRegularExpression.MatchingFlags, stop) in
-
-                    guard let textCheckingResult = textCheckingResult else { return }
-
-                    if let url = textCheckingResult.url {
-                        callback(textCheckingResult.range.offset(enclosingRange.location), Link(url: url))
-                    }
+                callback(
+                    range.offset(enclosingRange.location),
+                    link)
             }
 
-            let patterns = [
-                "\\[\\[([^\\]]+)\\]\\]",
-                "(#[^\\s]+)"
-            ]
-            for pattern in patterns {
-                let linkDetector = try! NSRegularExpression(pattern: pattern, options: [])
-                linkDetector.enumerateMatches(
-                    in: paragraph,
-                    options: [],
-                    range: paragraphRange) { (textCheckingResult: NSTextCheckingResult?, flags: NSRegularExpression.MatchingFlags, stop) in
-
-                        guard let textCheckingResult = textCheckingResult else { return }
-
-                        // Range 0:  [[Text]]
-                        // Range 1:    Text
-                        let matchRange = textCheckingResult.rangeAt(0)
-                        let searchString = (paragraph as NSString).substring(with: matchRange)
-                        if let escapedSearchString = searchString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
-                            let url = URL(string: "nv://\(escapedSearchString)") {
-
-                            callback(matchRange.offset(enclosingRange.location), Link(url: url))
-                        }
-                }
-            }
+            LinkMatching.detectStandardLinks(
+                text: paragraph,
+                callback: forwardAndOffsetRange)
+            LinkMatching.detectCustomLinks(
+                text: paragraph,
+                callback: forwardAndOffsetRange)
         }
     }
 

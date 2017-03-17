@@ -12,6 +12,7 @@
 		506D29511E7C229F00978667 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506D294F1E7C229F00978667 /* MainMenu.xib */; };
 		506D29591E7C323300978667 /* LinkAwareTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D29581E7C323300978667 /* LinkAwareTextStorage.swift */; };
 		506D295B1E7C328A00978667 /* LinkAwareString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D295A1E7C328A00978667 /* LinkAwareString.swift */; };
+		506D295D1E7C3FD200978667 /* LinkMatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506D295C1E7C3FD200978667 /* LinkMatching.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		506D29521E7C229F00978667 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		506D29581E7C323300978667 /* LinkAwareTextStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkAwareTextStorage.swift; sourceTree = "<group>"; };
 		506D295A1E7C328A00978667 /* LinkAwareString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkAwareString.swift; sourceTree = "<group>"; };
+		506D295C1E7C3FD200978667 /* LinkMatching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkMatching.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				506D294B1E7C229F00978667 /* AppDelegate.swift */,
 				506D29581E7C323300978667 /* LinkAwareTextStorage.swift */,
 				506D295A1E7C328A00978667 /* LinkAwareString.swift */,
+				506D295C1E7C3FD200978667 /* LinkMatching.swift */,
 				506D294D1E7C229F00978667 /* Assets.xcassets */,
 				506D294F1E7C229F00978667 /* MainMenu.xib */,
 				506D29521E7C229F00978667 /* Info.plist */,
@@ -138,6 +141,7 @@
 			files = (
 				506D294C1E7C229F00978667 /* AppDelegate.swift in Sources */,
 				506D295B1E7C328A00978667 /* LinkAwareString.swift in Sources */,
+				506D295D1E7C3FD200978667 /* LinkMatching.swift in Sources */,
 				506D29591E7C323300978667 /* LinkAwareTextStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
