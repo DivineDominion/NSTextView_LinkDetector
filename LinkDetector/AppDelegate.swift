@@ -21,19 +21,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         layoutManager.addTextContainer(textView.textContainer!)
         textStorage.addLayoutManager(layoutManager)
 
-//        textView.layoutManager?.delegate = self
-//        textView.textStorage?.setAttributedString(attributedString)
-//        textView.textStorage?.delegate = self
-        textView.linkTextAttributes = [NSForegroundColorAttributeName : NSColor.gray]
+        textView.linkTextAttributes = [
+            NSForegroundColorAttributeName : NSColor.gray,
+            NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue,
+            NSUnderlineColorAttributeName : NSColor.gray
+        ]
     }
-
-//    func visibleRange() -> NSRange {
-//        let container = textView.textContainer!
-//        let layoutManager = textView.layoutManager!
-//        let textVisibleRect = scrollView.contentView.bounds
-//        let glyphRange = layoutManager.glyphRangeForBoundingRect(textVisibleRect, inTextContainer: container)
-//        return layoutManager.characterRangeForGlyphRange(glyphRange, actualGlyphRange: nil)
-//    }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
